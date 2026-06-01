@@ -39,7 +39,9 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seamless Lead Tracker CRUD</title>
+    <title>Lead Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"rel="stylesheet">
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 40px; }
         .container { max-width: 1300px; margin: 0 auto; }
@@ -185,4 +187,76 @@ document.addEventListener("DOMContentLoaded", function () {
         </tbody>
     </table>
 </div>
-            
+            <!-- <footer >
+          <div class="text-center mt-4 fw-bold" >
+            <p class="mb-0">&copy; 2026 lead tracker. All Rights Reserved.Made by Maheen Ghaffar</p>
+        </div>        
+        
+        </footer> -->
+
+        <!-- <footer class="bg-dark text-white py-4 mt-5">
+  <div class="container text-center">
+
+    <
+    <h5 class="mb-3">Contact Us</h5>
+
+    <p class="mb-1">Email: support@leadtracker.com</p>
+    <p class="mb-1">Phone: +92 300 1234567</p>
+
+ 
+
+      <div class="col-md-4 mb-4">
+        <h5 class="fw-bold mb-3">Follow Us</h5>
+        <a href="#" class="text-white fs-5 me-3 us"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white fs-5 me-3 us"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white fs-5 me-3 us"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white fs-5 us"><i class="fab fa-youtube"></i></a>
+      </div>
+
+    </div>
+   
+    <p class="mb-0 fw-bold">
+      &copy; 2026 Lead Tracker. All Rights Reserved. Made by Maheen Ghaffar
+    </p>
+
+  </div>
+</footer> -->
+
+
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container text-center">
+
+    <!-- Contact Info -->
+    <h5 class="mb-3">Contact Us</h5>
+
+    <p class="mb-1">Email:maheenghaffar92@gmail.com</p>
+    <p class="mb-3">Phone: +92 321 3937954</p>
+
+    <!-- Social Links -->
+    <div class="mb-3">
+      <h6 class="fw-bold mb-2">Follow Us</h6>
+
+      <a href="#" class="text-white fs-5 me-3 us">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <a href="#" class="text-white fs-5 me-3 us">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+      <a href="#" class="text-white fs-5 me-3 us">
+        <i class="fab fa-twitter"></i>
+      </a>
+
+      <a href="#" class="text-white fs-5 us">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+
+    <!-- Copyright -->
+    <p class="mb-0 fw-bold">
+      &copy; 2026 Lead Tracker. All Rights Reserved. Made by Maheen Ghaffar
+    </p>
+
+  </div>
+</footer>
