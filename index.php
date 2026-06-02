@@ -19,17 +19,48 @@ try {
         header('Content-Type: application/json');
         echo json_encode(['status' => 'success']); exit;
     }
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create') {
-        $topic = htmlspecialchars(trim($_POST['topic']));
-        $company_name = htmlspecialchars(trim($_POST['company_name']));
-        $vulnerability = htmlspecialchars(trim($_POST['vulnerability']));
-        $your_solution = htmlspecialchars(trim($_POST['your_solution']));
-        if (!empty($company_name) && !empty($your_solution)) {
-            $sql = "INSERT INTO statu (topic, company_name, vulnerability, your_solution, status) VALUES (?, ?, ?, ?, 'Not Contacted')";
-            $stmt = $pdo->prepare($sql); $stmt->execute([$topic, $company_name, $vulnerability, $your_solution]);
-        }
-        header("Location: index.php"); exit;
+    // if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create') {
+    //     $topic = htmlspecialchars(trim($_POST['topic']));
+    //     $company_name = htmlspecialchars(trim($_POST['company_name']));
+    //     $vulnerability = htmlspecialchars(trim($_POST['vulnerability']));
+    //     $your_solution = htmlspecialchars(trim($_POST['your_solution']));
+    //     if (!empty($company_name) && !empty($your_solution)) {
+    //         $sql = "INSERT INTO statu (topic, company_name, vulnerability, your_solution, status) VALUES (?, ?, ?, ?, 'Not Contacted')";
+    //         $stmt = $pdo->prepare($sql); $stmt->execute([$topic, $company_name, $vulnerability, $your_solution]);
+    //     }
+    //     header("Location: index.php"); exit;
+    // }
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create') {
+    $topic = htmlspecialchars(trim($_POST['topic']));
+    $company_name = htmlspecialchars(trim($_POST['company_name']));
+    
+    // 1. ADD THESE TWO LINES TO READ THE INPUTS
+    $email = htmlspecialchars(trim($_POST['email']));
+    $phone = htmlspecialchars(trim($_POST['phone']));
+    
+    $vulnerability = htmlspecialchars(trim($_POST['vulnerability']));
+    $your_solution = htmlspecialchars(trim($_POST['your_solution']));
+    
+    if (!empty($company_name) && !empty($your_solution)) {
+        // 2. UPDATE THIS SQL TO INSERT EMAIL AND PHONE
+        $sql = "INSERT INTO statu (topic, company_name, email, phone, vulnerability, your_solution, status) VALUES (?, ?, ?, ?, ?, ?, 'Not Contacted')";
+        $stmt = $pdo->prepare($sql); $stmt->execute([$topic, $company_name, $email, $phone, $vulnerability, $your_solution]);
     }
+    header("Location: index.php"); exit;
+}
+
+
+
+
+
+
+
+
+
+
     $stmt = $pdo->query("SELECT * FROM statu ORDER BY id DESC");
     $leads = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) { die("Database connection failed: " . $e->getMessage()); }
@@ -171,6 +202,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     <label for="company_name">Company Name</label>
                     <input type="text" name="company_name" id="company_name" required>
                 </div>
+
+
+<!-- Replace your Email and Phone HTML with this -->
+<div class="form-group">
+    <label for="email">Contact Email</label>
+    <input type="email" name="email" id="email" required placeholder="name@company.com">
+</div>
+<div class="form-group">
+    <label for="phone">Contact Phone</label>
+    <input type="text" name="phone" id="phone" required placeholder="+92 300 1234567">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="form-group full-width">
                     <label for="vulnerability">The Vulnerability / Problem discovered</label>
                     <textarea name="vulnerability" id="vulnerability" required></textarea>
@@ -224,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </a>
 </td> -->
 
-<td class=email-link>
+<td class="email-link" id="phoneTableCell">
     <?php echo htmlspecialchars($lead['email']); ?>
     <br>
     <a class="btn btn-sm btn-primary mt-1 email-btn"
@@ -246,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             <!-- Phone Column -->
-            <td class="phone">
+            <td id="emailTableCell" class="phone">
                   <a class="phone-link" href="tel:<?php echo htmlspecialchars($lead['phone']); ?>">
                 <?php echo htmlspecialchars($lead['phone']); ?>
             </a>
@@ -340,3 +394,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   </div>
 </footer>
+<script>
+    // Get the HTML elements
+    const emailInput = document.getElementById('emailFormInput');
+    const phoneInput = document.getElementById('phoneFormInput');
+    
+    const emailCell = document.getElementById('emailTableCell');
+    const phoneCell = document.getElementById('phoneTableCell');
+
+    // Update email cell on type
+    emailInput.addEventListener('input', function() {
+        emailCell.textContent = this.value || '-';
+    });
+
+    // Update phone cell on type
+    phoneInput.addEventListener('input', function() {
+        phoneCell.textContent = this.value || '-';
+    });
+</script>
