@@ -69,6 +69,34 @@ try {
         .status-done { background-color: #c6f6d5; color: #22543d; }
         .btn-delete { background-color: #e53e3e; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; display: inline-block; }
         .btn-delete:hover { background-color: #c53030; }
+.phone {
+    white-space: nowrap !important;
+   
+}
+
+.phone-link {
+    text-decoration: none;
+       color:darkblue; 
+}
+     
+.email-link{
+       text-decoration: none;
+       color:darkblue;
+}
+
+
+.email-btn{
+    margin-top:5px;
+    font-size:14px;
+    padding:4px 10px;
+}
+
+
+
+
+
+
+
     </style>
     <script>
     function toggleLeadStatus(buttonElement, leadId) {
@@ -161,6 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <tr>
                 <th>Topic</th>
                 <th>Company Name</th>
+                 <th>Email</th>
+            <th>Phone</th>
                 <th>The Vulnerability</th>
                 <th>Your Solution</th>
                 <th>Status (Click to Edit)</th>
@@ -172,6 +202,56 @@ document.addEventListener("DOMContentLoaded", function () {
                 <tr>
                     <td><span class="badge"><?php echo htmlspecialchars($lead['topic']); ?></span></td>
                     <td><strong><?php echo htmlspecialchars($lead['company_name']); ?></strong></td>
+
+<!-- Email Column -->
+            <!-- <td>
+                <a class="email-link" href="mailto:<?php echo htmlspecialchars($lead['email']); ?>">
+                <?php echo htmlspecialchars($lead['email']); ?>
+            </a>
+            </td> -->
+               
+<!-- <td>
+    <a class="email-link"
+       href="mailto:<?php echo htmlspecialchars($lead['email']); ?>">
+        <?php echo htmlspecialchars($lead['email']); ?>
+    </a>
+</td> -->
+
+<!-- <td>
+    <a target="_blank"
+       href="https://mail.google.com/mail/?view=cm&fs=1&to=<?php echo urlencode($lead['email']); ?>">
+        <?php echo htmlspecialchars($lead['email']); ?>
+    </a>
+</td> -->
+
+<td class=email-link>
+    <?php echo htmlspecialchars($lead['email']); ?>
+    <br>
+    <a class="btn btn-sm btn-primary mt-1 email-btn"
+       target="_blank"
+       href="https://mail.google.com/mail/?view=cm&fs=1&to=<?php echo urlencode($lead['email']); ?>">
+        Send Email
+    </a>
+</td>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Phone Column -->
+            <td class="phone">
+                  <a class="phone-link" href="tel:<?php echo htmlspecialchars($lead['phone']); ?>">
+                <?php echo htmlspecialchars($lead['phone']); ?>
+            </a>
+            </td>
+           
                     <td class="problem"><?php echo htmlspecialchars($lead['vulnerability']); ?></td>
                     <td class="solution"><?php echo htmlspecialchars($lead['your_solution']); ?></td>
                     <td>
